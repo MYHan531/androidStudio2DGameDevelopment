@@ -4,11 +4,13 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.ContextCompat;
 
 /**
@@ -30,12 +32,24 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback{
         this.context = context;
         gameLoop = new GameLoop(this, surfaceHolder);
         //Initialize player
-        player = new Player();
+        player = new Player(getContext(), 2*500, 500, 30);
 
 
         setFocusable(true);
     }
-
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        //handle touch event actions
+        switch(event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                player.setPosition((double) event.getX(), (double)event.getY());
+                return true;
+            case MotionEvent.ACTION_MOVE:
+                player.setPosition((double) event.getX(), (double)event.getY());
+                return true;
+        }
+        return super.onTouchEvent(event);
+    }
     @Override
     public void surfaceCreated(@NonNull SurfaceHolder surfaceHolder) {
         gameLoop.startLoop();
@@ -79,5 +93,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback{
 
     public void update() {
         //update game state
+        player.update();
     }
 }
