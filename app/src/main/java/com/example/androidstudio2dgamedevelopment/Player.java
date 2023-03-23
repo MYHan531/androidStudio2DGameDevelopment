@@ -10,8 +10,8 @@ import androidx.core.content.ContextCompat;
  * Player is the main character of the game, which the user can control with a touch joystick.
  * The player class is an extension of a circle, which is an extension of a GameObject
  */
-class Player extends Circle{
-    private static final double SPEED_PIXELS_PER_SECOND = 400.0;
+public class Player extends Circle{
+    public static final double SPEED_PIXELS_PER_SECOND = 400.0;
     private static final double MAX_SPEED = SPEED_PIXELS_PER_SECOND / GameLoop.MAX_UPS;
     private final Joystick joystick;
 
@@ -35,8 +35,8 @@ class Player extends Circle{
         positionY += velocityY;
     }
 
-    public void setPosition(double positionX, double positionY) {
-        this.positionX = positionX;
-        this.positionY = positionY;
-    }
+//    public void setPosition(double positionX, double positionY) {
+//        this.positionX = positionX;
+//        this.positionY = positionY;
+//    }
 }

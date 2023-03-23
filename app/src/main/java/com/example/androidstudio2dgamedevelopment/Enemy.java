@@ -6,19 +6,42 @@ import android.graphics.Paint;
 
 import androidx.core.content.ContextCompat;
 
-class Enemy extends Circle {
-    private static final double SPEED_PIXELS_PER_SECOND = 400.0;
+public class Enemy extends Circle {
+    private static final double SPEED_PIXELS_PER_SECOND = Player.SPEED_PIXELS_PER_SECOND*0.6;
     private static final double MAX_SPEED = SPEED_PIXELS_PER_SECOND / GameLoop.MAX_UPS;
-    public Enemy (Context context, int color, double positionX, double positionY, double radius) {
-        super(context, ContextCompat.getColor(context, R.color.enemy),positionX,positionY, radius);
+    private final Player player;
 
+    public Enemy (Context context, Player player, double positionX, double positionY, double radius) {
+        super(context, ContextCompat.getColor(context, R.color.enemy),positionX,positionY, radius);
+        this.player = player;
     }
     public void update() {
-        // Update velocity based on the actuator of joystick
-        velocityX = joystick.getActuatorX() * MAX_SPEED;
-        velocityY = joystick.getActuatorY() * MAX_SPEED;
+        /**
+         * Update velocity of the enemy so that the velocity is in the direction of the player
+         */
+        //Calculate vector from enemy to player (in x and y)
+        double distanceToPlayerX = player.getPositionX() - positionX;
+        double distanceToPlayerY = player.getPositionY() - positionY;
 
-        //update position
+        //Calculate (absolute) distance between enemy (this) and player
+        double distanceToPlayer = GameObject.getDistanceBetweenObject(this, player);
+
+        //calculate direction from enemy to player
+        double directionX = distanceToPlayerX/distanceToPlayer;
+        double directionY = distanceToPlayerY/distanceToPlayer;
+
+        //set velocity in the direction to player
+        if (distanceToPlayer > 0) { //avoid division by zero
+            velocityX = directionX*MAX_SPEED;
+            velocityY = directionY*MAX_SPEED;
+
+        } else {
+            velocityX = 0;
+            velocityY = 0;
+        }
+
+
+        //update position of the enemy
         positionX += velocityX;
         positionY += velocityY;
     }

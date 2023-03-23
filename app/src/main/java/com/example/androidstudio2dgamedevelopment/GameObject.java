@@ -16,6 +16,21 @@ public abstract class GameObject {
         this.positionX = positionX;
         this.positionY = positionY;
     }
+
+    protected static double getDistanceBetweenObject(GameObject obj1, GameObject obj2) {
+        return Math.sqrt(
+          Math.pow(obj2.getPositionX() - obj1.getPositionX(),2) + Math.pow(obj2.getPositionY() - obj1.getPositionY(),2)
+        );
+    }
+
     public abstract void draw(Canvas canvas);
     public abstract void update();
+
+    protected double getPositionX() {
+        return positionX;
+    }
+
+    protected double getPositionY() {
+        return positionY;
+    }
 }
