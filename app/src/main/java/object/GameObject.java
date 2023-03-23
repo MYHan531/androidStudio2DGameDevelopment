@@ -1,4 +1,4 @@
-package com.example.androidstudio2dgamedevelopment;
+package object;
 
 import android.graphics.Canvas;
 

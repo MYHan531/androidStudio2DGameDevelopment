@@ -1,10 +1,12 @@
-package com.example.androidstudio2dgamedevelopment;
+package object;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
 
 import androidx.core.content.ContextCompat;
+
+import com.example.androidstudio2dgamedevelopment.GameLoop;
+import com.example.androidstudio2dgamedevelopment.Joystick;
+import com.example.androidstudio2dgamedevelopment.R;
 
 /**
  * Player is the main character of the game, which the user can control with a touch joystick.

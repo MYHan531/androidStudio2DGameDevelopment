@@ -1,10 +1,11 @@
-package com.example.androidstudio2dgamedevelopment;
+package object;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
 
 import androidx.core.content.ContextCompat;
+
+import com.example.androidstudio2dgamedevelopment.GameLoop;
+import com.example.androidstudio2dgamedevelopment.R;
 
 public class Enemy extends Circle {
     private static final double SPEED_PIXELS_PER_SECOND = Player.SPEED_PIXELS_PER_SECOND*0.6;
