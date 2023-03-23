@@ -1,4 +1,4 @@
-package object;
+package com.example.androidstudio2dgamedevelopment.object;
 
 import android.content.Context;
 
@@ -17,7 +17,13 @@ public class Enemy extends Circle {
     private final Player player;
 
     public Enemy (Context context, Player player, double positionX, double positionY, double radius) {
-        super(context, ContextCompat.getColor(context, R.color.enemy),positionX,positionY, radius);
+        super(
+                context,
+                ContextCompat.getColor(context, R.color.enemy),
+                positionX,
+                positionY,
+                radius
+        );
         this.player = player;
     }
 
@@ -57,7 +63,7 @@ public class Enemy extends Circle {
         double distanceToPlayerY = player.getPositionY() - positionY;
 
         //Calculate (absolute) distance between enemy (this) and player
-        double distanceToPlayer = GameObject.getDistanceBetweenObject(this, player);
+        double distanceToPlayer = getDistanceBetweenObject(this, player);
 
         //calculate direction from enemy to player
         double directionX = distanceToPlayerX/distanceToPlayer;
