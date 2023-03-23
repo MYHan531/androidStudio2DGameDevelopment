@@ -22,6 +22,26 @@ public abstract class Circle extends GameObject {
         paint.setColor(color);
     }
 
+    /**
+     * is Colliding checks if two circles are colliding, based on their positions and radii
+     * @param obj1
+     * @param obj2
+     * @return
+     */
+    public static boolean isColliding(Circle obj1, Circle obj2) {
+        double distance = getDistanceBetweenObject(obj1,obj2);
+        double distanceToCollision = obj1.getRadius() + obj2.getRadius();
+        if (distance < distanceToCollision) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private double getRadius() {
+        return radius;
+    }
+
     public void draw(Canvas canvas) {
         canvas.drawCircle((float)positionX, (float)positionY, (float)radius, paint);
     }
