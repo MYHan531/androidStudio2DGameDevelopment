@@ -1,8 +1,10 @@
-package object;
+package com.example.androidstudio2dgamedevelopment;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+
+import androidx.core.content.ContextCompat;
 
 /**
  * Circle is an abstract class which implements a draw method from GameObject for drawing the
